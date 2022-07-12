@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import de.syntax_institut.filmestreamingservice.R
 import de.syntax_institut.filmestreamingservice.data.model.Movie
+import de.syntax_institut.filmestreamingservice.ui.HomeFragmentDirections
 
 /**
  * Der Item Adapter weist den views im ViewHolder den Inhalt zu
@@ -51,6 +53,11 @@ class ItemAdapter(
         holder.imageView.setImageResource(item.imageResource)
 
         // TODO: bei Klick auf die ImageView soll zum DetailFragment navigiert werden
+
+        holder.itemView.setOnClickListener{
+            holder.itemView.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(titleId = item.stringResource, screenId = item.screenImageResource, pictureId = item.imageResource))
+        }
 
     }
 
